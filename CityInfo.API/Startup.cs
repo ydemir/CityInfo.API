@@ -26,6 +26,8 @@ namespace CityInfo.API
             {
                 app.UseDeveloperExceptionPage();
             }
+            //Browserda status code görüntülenmesini istiyorsak bu methodu kullanıyoruz.
+            app.UseStatusCodePages();
 
 
             //Http requestlerin tamamında aşağıdaki sonucu döndürür.
