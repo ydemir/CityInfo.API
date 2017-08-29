@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json.Serialization;
 
 namespace CityInfo.API
 {
@@ -13,6 +14,18 @@ namespace CityInfo.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+
+            //Json Formatın ayarlarını değiştirdik. property lerin ilk harflerinin büyük olmasını sağladık. (Camel case)
+            //Artık genellikle küçük harf ile başlıyor o yüzden açıklamaya aldık.
+                //.AddJsonOptions(o=>
+                //{
+                //    if (o.SerializerSettings.ContractResolver!=null)
+                //    {
+                //        var castedResolver = o.SerializerSettings.ContractResolver
+                //        as DefaultContractResolver;
+                //        castedResolver.NamingStrategy = null;
+                //    }
+                //});
         }
 
         //ASP.NET CORE MVC Pipeline ında kullanılacak loglama cacheleme authorization vb süreçlerin ayarlarının yapıldığı bölümdür.
