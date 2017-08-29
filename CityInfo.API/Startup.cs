@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json.Serialization;
 
@@ -13,7 +14,9 @@ namespace CityInfo.API
         //Dependency Injection sisteminin kullanıldığı servislerle ilgili ayarların yapıldığı methodtur.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+            services.AddMvc()
+                .AddMvcOptions(o=>o.OutputFormatters.Add(
+                    new XmlDataContractSerializerOutputFormatter()));
 
             //Json Formatın ayarlarını değiştirdik. property lerin ilk harflerinin büyük olmasını sağladık. (Camel case)
             //Artık genellikle küçük harf ile başlıyor o yüzden açıklamaya aldık.
