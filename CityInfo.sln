@@ -3,9 +3,26 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.3
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Src", "Src", "{5AE93CE7-E436-441F-ABD3-35EB5A20999A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CityInfo.API", "CityInfo.API\CityInfo.API.csproj", "{EEADD011-64DD-4F02-B36C-EB6826F4F32A}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EEADD011-64DD-4F02-B36C-EB6826F4F32A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEADD011-64DD-4F02-B36C-EB6826F4F32A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEADD011-64DD-4F02-B36C-EB6826F4F32A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEADD011-64DD-4F02-B36C-EB6826F4F32A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EEADD011-64DD-4F02-B36C-EB6826F4F32A} = {5AE93CE7-E436-441F-ABD3-35EB5A20999A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E0B8FD31-0C05-400A-B51D-68A5E89DE0CE}
