@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using CityInfo.API.Services;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,20 +17,27 @@ namespace CityInfo.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc()
-                .AddMvcOptions(o=>o.OutputFormatters.Add(
+                .AddMvcOptions(o => o.OutputFormatters.Add(
                     new XmlDataContractSerializerOutputFormatter()));
 
             //Json Formatın ayarlarını değiştirdik. property lerin ilk harflerinin büyük olmasını sağladık. (Camel case)
             //Artık genellikle küçük harf ile başlıyor o yüzden açıklamaya aldık.
-                //.AddJsonOptions(o=>
-                //{
-                //    if (o.SerializerSettings.ContractResolver!=null)
-                //    {
-                //        var castedResolver = o.SerializerSettings.ContractResolver
-                //        as DefaultContractResolver;
-                //        castedResolver.NamingStrategy = null;
-                //    }
-                //});
+            //.AddJsonOptions(o=>
+            //{
+            //    if (o.SerializerSettings.ContractResolver!=null)
+            //    {
+            //        var castedResolver = o.SerializerSettings.ContractResolver
+            //        as DefaultContractResolver;
+            //        castedResolver.NamingStrategy = null;
+            //    }
+            //});
+
+#if DEBUG
+            services.AddTransient<IMailService, LocalMailService>();
+#else
+            services.AddTransient<IMailService,CloudMailService>();
+#endif
+
         }
 
         //ASP.NET CORE MVC Pipeline ında kullanılacak loglama cacheleme authorization vb süreçlerin ayarlarının yapıldığı bölümdür.
