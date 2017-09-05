@@ -1,4 +1,5 @@
-﻿using CityInfo.API.Models;
+﻿using AutoMapper;
+using CityInfo.API.Models;
 using CityInfo.API.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -21,17 +22,19 @@ namespace CityInfo.API.Controllers
 
             var cityEntities = _cityInfoRepository.GetCities();
 
-            var result = new List<CityWithoutPointsOfInterestDTO>();
+            //var result = new List<CityWithoutPointsOfInterestDTO>();
 
-            foreach (var cityEntity in cityEntities)
-            {
-                result.Add(new CityWithoutPointsOfInterestDTO
-                {
-                    Id=cityEntity.Id,
-                    Name=cityEntity.Name,
-                    Description=cityEntity.Description
-                });
-            }
+            //foreach (var cityEntity in cityEntities)
+            //{
+            //    result.Add(new CityWithoutPointsOfInterestDTO
+            //    {
+            //        Id=cityEntity.Id,
+            //        Name=cityEntity.Name,
+            //        Description=cityEntity.Description
+            //    });
+            //}
+
+            var result = Mapper.Map<IEnumerable<CityWithoutPointsOfInterestDTO>>(cityEntities);
 
             return Ok(result);
           
@@ -49,33 +52,37 @@ namespace CityInfo.API.Controllers
 
             if (includePointsOfInterest)
             {
-                var cityResult = new CityDTO()
-                {
-                    Id = city.Id,
-                    Name = city.Name,
-                    Description = city.Description
-                };
+                //var cityResult = new CityDTO()
+                //{
+                //    Id = city.Id,
+                //    Name = city.Name,
+                //    Description = city.Description
+                //};
 
-                foreach (var poi in city.PointOfInterest)
-                {
-                    cityResult.PointOfInterest.Add(
-                        new PointOfInterestDTO()
-                        {
-                            Id=poi.Id,
-                            Name=poi.Name,
-                            Description=poi.Description
-                        });
-                }
+                //foreach (var poi in city.PointOfInterest)
+                //{
+                //    cityResult.PointOfInterest.Add(
+                //        new PointOfInterestDTO()
+                //        {
+                //            Id=poi.Id,
+                //            Name=poi.Name,
+                //            Description=poi.Description
+                //        });
+                //}
+
+                var cityResult = Mapper.Map<CityDTO>(city);
                 return Ok(cityResult);
             }
 
-            var cityWithoutPoinstOfInterestResult =
-                new CityWithoutPointsOfInterestDTO()
-                {
-                    Id = city.Id,
-                    Description = city.Description,
-                    Name = city.Name
-                };
+            //var cityWithoutPoinstOfInterestResult =
+            //    new CityWithoutPointsOfInterestDTO()
+            //    {
+            //        Id = city.Id,
+            //        Description = city.Description,
+            //        Name = city.Name
+            //    };
+
+            var cityWithoutPoinstOfInterestResult = Mapper.Map<CityWithoutPointsOfInterestDTO>(city);
             return Ok(cityWithoutPoinstOfInterestResult);
 
 

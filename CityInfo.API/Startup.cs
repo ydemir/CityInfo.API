@@ -1,4 +1,5 @@
 ﻿using CityInfo.API.Entities;
+using CityInfo.API.Models;
 using CityInfo.API.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -71,7 +72,7 @@ namespace CityInfo.API
 
             loggerFactory.AddDebug();
 
-            app.UseMvc();
+           
 
             if (env.IsDevelopment())
             {
@@ -82,6 +83,15 @@ namespace CityInfo.API
             //Browserda status code görüntülenmesini istiyorsak bu methodu kullanıyoruz.
             app.UseStatusCodePages();
 
+            AutoMapper.Mapper.Initialize(cfg =>
+            {
+                cfg.CreateMap<Entities.City, Models.CityWithoutPointsOfInterestDTO>();
+                cfg.CreateMap<City, CityDTO>();
+                cfg.CreateMap<PointOfInterest, PointOfInterestDTO>();
+            });
+
+
+            app.UseMvc();
 
             //Http requestlerin tamamında aşağıdaki sonucu döndürür.
 
