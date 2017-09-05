@@ -57,6 +57,8 @@ namespace CityInfo.API
 
             var connectionString = Startup.Configuration["ConnectionStrings:cityInfoDbConnectionString"];
             services.AddDbContext<CityInfoContext>(o=>o.UseSqlServer(connectionString));
+
+            services.AddScoped<ICityInfoRepository, CityInfoRepository>();
         }
 
         //ASP.NET CORE MVC Pipeline ında kullanılacak loglama cacheleme authorization vb süreçlerin ayarlarının yapıldığı bölümdür.
